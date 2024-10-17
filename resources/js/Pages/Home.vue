@@ -202,6 +202,7 @@ body{
     </div>
 </template>
 <script>
+import axios from 'axios';
 import TourCard from '../Components/TourCard.vue';
 
 export default {
@@ -212,6 +213,10 @@ export default {
         return {
 
         }
+    },
+    methods:{
+     
+    
     }
 
 }

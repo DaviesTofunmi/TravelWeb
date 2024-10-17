@@ -44,12 +44,16 @@ Route::post('/send-application-id', [VisaApplicationFormController::class, 'send
 
 
 Route::get("fetchTour", [TourPackagesController::class, 'fetchPackages'])->name("tour.fetch");
+Route::get("/fetchTourById/{id}", [TourPackagesController::class, 'fetchTourById'])->name("tour.fetchById");
 Route::get("/createTour", function(){
     return Inertia::render("Admin/CreateTour");
 })->name('createTour');
 Route::get("/VisaAdmin", function(){
     return Inertia::render("Admin/VisaAdmin");
 })->name('visa.admin');
+Route::get("/TourDetails", function(){
+    return Inertia::render("TourDetails");
+})->name('tour.details');
 
 
 
@@ -89,6 +93,13 @@ $data= ["name"=> "Tofunmi", "subject"=> "Welcome to Pegi Airline"];
 Mail::to('daviestofunmi11@gmail.com')-> send(new WelcomeMail($data));
 return "Email sent successfully";
 });
+
+
+
+// Laravel 8 & 9
+Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 
 require __DIR__.'/auth.php';

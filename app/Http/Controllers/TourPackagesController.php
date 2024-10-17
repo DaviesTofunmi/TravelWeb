@@ -45,6 +45,16 @@ class TourPackagesController extends Controller
         $packages= TourPackages::all();
         return response()->json($packages);
     }
+
+
+    public function fetchTourById($id){
+        $tour = TourPackages::find($id);
+        if($tour){
+            return response()->json(["tour" => $tour], 200);
+
+        }
+        return response()->json(['message' => 'Tour not found'], 404);
+    }
 }
 
 
